@@ -10,19 +10,21 @@
 #######################################################################################
 # 1. Import libraries for API requests, JSON formatting, and time.
 
-<!!!REPLACEME with code for libraries>
+import requests
+import json
+import time
 
 #######################################################################################
 # 2. Assign the Webex hard-coded access token to the variable accessToken.
 
 
-accessToken = "Bearer <!!!REPLACEME with hard-coded token!!!>" 
+accessToken = "Bearer M2VkZTJjYjktMTBkYi00NGEyLThhNjYtNTQ3OTJlNmQ5MmFhN2Y0ZWFkYmYtNmFk_P0A1_bc884c7a-820b-497b-8b60-00b4d15ea95d"
 
 #######################################################################################
 # 3. Prepare GetParameters to get the latest message for messages API.
 
 # Defines a variable that will hold the roomId 
-roomIdToGetMessages = "<!!!REPLACEME with roomID of the NPA2023 Webex Teams room!!!>" 
+roomIdToGetMessages = "Y2lzY29zcGFyazovL3VzL1JPT00vNTFmNTJiMjAtNWQwYi0xMWVmLWE5YTAtNzlkNTQ0ZjRkNGZi" 
 
 while True:
     # always add 1 second of delay to the loop to not go over a rate limit of API calls
@@ -41,7 +43,7 @@ while True:
     # Send a GET request to the Webex Teams messages API.
     # - Use the GetParameters to get only the latest message.
     # - Store the message in the "r" variable.
-    r = requests.get("<!!!REPLACEME with URL!!!>",
+    r = requests.get("https://webexapis.com/v1/messages",
                          params = GetParameters, 
                          headers = {"Authorization": accessToken}
                     )
@@ -63,13 +65,13 @@ while True:
     
     # check if the text of the message starts with the magic character "/" and yourname followed by a location name
     # e.g.  "/chotipat San Jose"
-    if message.find("<!!!REPLACEME!!!>") == 0:
+    if message.find("/Piraporn Morocco") == 0:
         # extract name of a location (city) where we check for GPS coordinates using the OpenWeather Geocoding API
         # Enter code below to hold city name in location variable.
         # For example location should be "San Jose" if the message is "/chotipat San Jose".
-        location = "<!!!REPLACEME!!!>" 
+        location = "/Piraporn Morocco" 
 
-#######################################################################################     
+# #######################################################################################     
 # 5. Prepare openweather Geocoding APIGetParameters..
         # Openweather Geocoding API GET parameters:
         # - "q" is the the location to lookup
